@@ -1,0 +1,23 @@
+﻿@inject IJSRuntime JsRuntime
+
+<nav class="container-fluid">
+    <ul>
+        <li><a href="/">Electricity Calculator ⚡</a></li>
+    </ul>
+    <ul>
+        <li><a href="/about">About</a></li>
+        <li>
+            <button id="theme-toggler" @onclick="ToggleTheme">@(darkTheme ? "☀" : "🌛")</button>
+        </li>
+    </ul>
+</nav>
+
+@code {
+    bool darkTheme = true;
+
+    void ToggleTheme()
+    {
+        JsRuntime.InvokeVoidAsync("toggleTheme", darkTheme);
+        darkTheme = !darkTheme;
+    }
+}
