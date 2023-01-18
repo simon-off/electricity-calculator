@@ -2,22 +2,30 @@
 
 <nav class="container-fluid">
     <ul>
-        <li><a href="/">Electricity Calculator ⚡</a></li>
+        <li><a href="/">⚡ Calculator</a></li>
     </ul>
     <ul>
         <li><a href="/about">About</a></li>
         <li>
-            <button id="theme-toggler" @onclick="ToggleTheme">@(darkTheme ? "☀" : "🌛")</button>
+            <label for="switch">
+                <input type="checkbox" id="switch" role="switch" @bind="DarkTheme">
+                @(_darkTheme ? "☀" : "🌛")
+            </label>
+           
         </li>
     </ul>
 </nav>
 
 @code {
-    bool darkTheme = true;
-
-    void ToggleTheme()
-    {
-        JsRuntime.InvokeVoidAsync("toggleTheme", darkTheme);
-        darkTheme = !darkTheme;
+    bool _darkTheme = true;
+    bool DarkTheme {
+        get
+        {
+            return _darkTheme;
+        }
+        set {
+            JsRuntime.InvokeVoidAsync("toggleTheme", _darkTheme);
+            _darkTheme = !_darkTheme;
+        }
     }
 }

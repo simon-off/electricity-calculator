@@ -4,11 +4,32 @@
 
 <hgroup>
     <h1>CALCULATE STUFF</h1>
+    <h2>Suck on these</h2>
     <h2><em>Please calculate carefully...</em></h2>
 </hgroup>
 
 <section>
+    <!-- TODO: -->
+    <!-- @foreach (var item in itemList)
+    {
+        <Item/>
+    } -->
+
     <h3>@Calculator.Add(1330, 7)</h3>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste recusandae quibusdam voluptate laboriosam ea
         quisquam maxime libero sint praesentium consequatur.</p>
 </section>
+
+@code
+{
+    public ItemList itemList = new ItemList();
+
+    void test()
+    {
+        ItemData myItem = new ItemData();
+
+        itemList.Items.Add(new ItemData());
+        itemList.Items.Add(new ItemData());
+        itemList.Items.Add(new ItemData());
+    }
+}
