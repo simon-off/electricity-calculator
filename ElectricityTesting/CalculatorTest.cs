@@ -1,5 +1,5 @@
 namespace ElectricityTesting;
-using static ElectricityCalculator.Data.Calculator;
+using static ElectricityCalculator.Classes.Calculator;
 
 public class CalculatorTest
 {

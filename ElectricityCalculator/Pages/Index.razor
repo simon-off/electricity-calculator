@@ -2,34 +2,45 @@
 
 <PageTitle>Electricity Calculator</PageTitle>
 
-<hgroup>
-    <h1>CALCULATE STUFF</h1>
-    <h2>Suck on these</h2>
-    <h2><em>Please calculate carefully...</em></h2>
-</hgroup>
+<h1>CALCULATE STUFF</h1>
 
 <section>
-    <!-- TODO: -->
-    <!-- @foreach (var item in itemList)
-    {
-        <Item/>
-    } -->
-
-    <h3>@Calculator.Add(1330, 7)</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste recusandae quibusdam voluptate laboriosam ea
-        quisquam maxime libero sint praesentium consequatur.</p>
+    <hr>
+    <div class="items-labels items-layout">
+        <h3 data-tooltip="Enter item name">ITEM</h3>
+        <h3 data-tooltip="Enter item wattage">WATT</h3>
+        <h3 data-tooltip="Enter item usage time">USAGE</h3>
+        <span></span>
+        <h3 data-tooltip="Calculated kilowatt-hours for your item">KWH</h3>
+        <h3 data-tooltip="Calculated cost for your item">COST</h3>
+        <span></span>
+    </div>
+    <div class="items">
+        @foreach (var itemData in itemList.Items)
+        {
+            <ItemComponent ItemData="itemData"/>
+        }
+        <button 
+            @onclick="AddItem"
+            class="outline add-item-button" 
+            data-tooltip="Add a new item like: Microwave, Fridge" 
+            data-placement="bottom"
+            >ADD ITEM
+        </button>    
+    </div>
 </section>
 
 @code
 {
-    public ItemList itemList = new ItemList();
+    private ItemList itemList = new();
 
-    void test()
+    private void AddItem()
     {
-        ItemData myItem = new ItemData();
+        itemList.Items.Add(new ItemData());
+    }
 
-        itemList.Items.Add(new ItemData());
-        itemList.Items.Add(new ItemData());
+    protected override void OnInitialized()
+    {
         itemList.Items.Add(new ItemData());
     }
 }

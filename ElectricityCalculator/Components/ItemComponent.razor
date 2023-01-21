@@ -1,0 +1,18 @@
+<div class="item-inputs items-layout">
+    <input type="text" placeholder="Name...">
+    <input type="number" placeholder="Wattage...">
+    <input type="number" placeholder="Time...">
+    <select name="" id="">
+        <option value="hej" selected="selected">Hours</option>
+        <option value="hej">Minutes</option>
+    </select>
+    <input type="text" disabled>
+    <input type="text" disabled> 
+    <button class="outline secondary">❌</button>
+</div>
+
+@code
+{
+    [Parameter]
+    public ItemData? ItemData { get; set; }
+}

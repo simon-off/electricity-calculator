@@ -1,0 +1,22 @@
+$primary-hue: 180;
+$grey-hue: 205;
+
+// 'null' disable the breakpoint
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+// Viewports
+$viewports: (
+  // 'null' disable the viewport on a breakpoint
+  sm: null,
+  md: null,
+  lg: null,
+  xl: 1400px
+);
+
+@import "pico.scss";

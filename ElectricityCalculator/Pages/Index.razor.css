@@ -1,0 +1,30 @@
+.items-labels {
+  padding: 0.5rem;
+}
+
+.items-labels h3 {
+  margin: 0rem;
+  font-size: 20px;
+  border: none;
+  width: min-content;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  backdrop-filter: brightness(1.25);
+  border-radius: var(--border-radius);
+}
+
+.add-item-button {
+  transition: var(--transition);
+  opacity: 0.75;
+  border-style: dashed;
+  margin: 0;
+}
+
+.add-item-button:hover {
+  opacity: 1;
+}

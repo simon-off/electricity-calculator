@@ -7,3 +7,25 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
+
+.container {
+  padding-inline: var(--spacing);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.items-layout {
+  display: grid;
+  gap: 0.375rem;
+  grid-template-columns: 3fr 2fr 1.5fr 1.5fr 1.5fr 1.5fr 1fr;
+}

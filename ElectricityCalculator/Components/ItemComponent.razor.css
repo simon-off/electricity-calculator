@@ -1,0 +1,12 @@
+.item-inputs {
+  /* padding: 0.5rem; */
+}
+
+.item-inputs > * {
+  margin: 0;
+}
+
+option {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

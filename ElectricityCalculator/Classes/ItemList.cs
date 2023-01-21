@@ -1,4 +1,4 @@
-namespace ElectricityCalculator.Data;
+namespace ElectricityCalculator.Classes;
 
 public class ItemList 
 {
