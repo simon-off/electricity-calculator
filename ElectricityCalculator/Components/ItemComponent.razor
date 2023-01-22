@@ -1,18 +1,26 @@
 <div class="item-inputs items-layout">
-    <input type="text" placeholder="Name...">
-    <input type="number" placeholder="Wattage...">
-    <input type="number" placeholder="Time...">
-    <select name="" id="">
-        <option value="hej" selected="selected">Hours</option>
-        <option value="hej">Minutes</option>
+    <input type="text" placeholder="Name..." @bind="Item.Title">
+    <input type="number" placeholder="Wattage..." @bind="Item.Wattage">
+    <input type="number" placeholder="Time..." @bind="Item.UsageTime">
+    <select name="" id="" @bind="Item.UsageTimeFormat">
+        <option value="@ItemTimeFormat.Hours" selected="selected">Hours</option>
+        <option value="@ItemTimeFormat.Minutes">Minutes</option>
     </select>
     <input type="text" disabled>
-    <input type="text" disabled> 
-    <button class="outline secondary">❌</button>
+    <input type="text" disabled>
+    <button @onclick="RemoveClicked" class="outline secondary">❌</button>
 </div>
 
 @code
 {
     [Parameter]
-    public ItemData? ItemData { get; set; }
+    public EventCallback<Guid> OnRemoveClicked { get; set; }
+
+    protected async Task RemoveClicked()
+    {
+        await OnRemoveClicked.InvokeAsync(Item.ID);
+    }
+
+    [Parameter]
+    public ItemData Item { get; set; }
 }

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap");
+
 html {
   height: 100%;
 }
@@ -27,5 +29,9 @@ input[type="number"] {
 .items-layout {
   display: grid;
   gap: 0.375rem;
-  grid-template-columns: 3fr 2fr 1.5fr 1.5fr 1.5fr 1.5fr 1fr;
+  grid-template-columns: 5fr 3fr 3fr calc(var(--font-size) * 4.25) 3fr 3fr 1.25fr;
+}
+
+.mono * {
+  font-family: "JetBrains Mono", monospace;
 }

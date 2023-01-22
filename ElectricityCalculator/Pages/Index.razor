@@ -4,29 +4,25 @@
 
 <h1>CALCULATE STUFF</h1>
 
-<section>
+<section class="mono">
     <hr>
     <div class="items-labels items-layout">
-        <h3 data-tooltip="Enter item name">ITEM</h3>
-        <h3 data-tooltip="Enter item wattage">WATT</h3>
-        <h3 data-tooltip="Enter item usage time">USAGE</h3>
+        <h3 data-tooltip="Enter item name">ITEM<span>&#x24D8;</span></h3>
+        <h3 data-tooltip="Enter item wattage">WATT<span>&#x24D8;</span></h3>
+        <h3 data-tooltip="Enter item usage time">USAGE<span>&#x24D8;</span></h3>
         <span></span>
-        <h3 data-tooltip="Calculated kilowatt-hours for your item">KWH</h3>
-        <h3 data-tooltip="Calculated cost for your item">COST</h3>
+        <h3 data-tooltip="Calculated kilowatt-hours for your item">KWH<span>&#x24D8;</span></h3>
+        <h3 data-tooltip="Calculated cost for your item">COST<span>&#x24D8;</span></h3>
         <span></span>
     </div>
     <div class="items">
-        @foreach (var itemData in itemList.Items)
+        @foreach (var item in itemList.Items)
         {
-            <ItemComponent ItemData="itemData"/>
+            <ItemComponent Item="item" OnRemoveClicked="RemoveItem" />
         }
-        <button 
-            @onclick="AddItem"
-            class="outline add-item-button" 
-            data-tooltip="Add a new item like: Microwave, Fridge" 
-            data-placement="bottom"
-            >ADD ITEM
-        </button>    
+        <button @onclick="AddItem" class="outline add-item-button" data-tooltip="Add a new item like: Microwave, Fridge"
+            data-placement="bottom">ADD ITEM
+        </button>
     </div>
 </section>
 
@@ -37,6 +33,11 @@
     private void AddItem()
     {
         itemList.Items.Add(new ItemData());
+    }
+
+    private void RemoveItem(Guid ID)
+    {
+        itemList.RemoveItem(ID);
     }
 
     protected override void OnInitialized()
