@@ -2,23 +2,46 @@
 
 <PageTitle>Electricity Calculator</PageTitle>
 
-<h1>CALCULATE STUFF</h1>
+<section class="result-section mono">
+    <div>
+        <label for="price">Price/kWh</label>
+        <input id="price" type="number">
+    </div>
+    <div>
+        <label for="total-kwh">Total kWH</label>
+        <input id="total-kwh" type="number" disabled>
+    </div>
+    <div>
+        <label for="total-cost">Total Cost</label>
+        <input id="total-cost" type="number" disabled>
+    </div>
+    <div>
+        <label for="time-format">Per</label>
+        <select id="time-format">
+            <option value="@TotalTimeFormat.Day" selected="selected">Day</option>
+            <option value="@TotalTimeFormat.Month">Month</option>
+            <option value="@TotalTimeFormat.Year">Year</option>
+        </select>
+    </div>
+</section>
 
 <section class="mono">
-    <hr>
     <div class="items-labels items-layout">
-        <h3 data-tooltip="Enter item name">ITEM<span>&#x24D8;</span></h3>
-        <h3 data-tooltip="Enter item wattage">WATT<span>&#x24D8;</span></h3>
-        <h3 data-tooltip="Enter item usage time">USAGE<span>&#x24D8;</span></h3>
+        <label id="name-label" data-tooltip="Enter item name">ITEM<span class="info-icon">&#x24D8;</span></label>
+        <label id="watt-label" data-tooltip="Enter item wattage">WATT<span class="info-icon">&#x24D8;</span></label>
+        <label id="usage-label" data-tooltip="Enter item usage time per day">USAGE<span
+                class="info-icon">&#x24D8;</span></label>
         <span></span>
-        <h3 data-tooltip="Calculated kilowatt-hours for your item">KWH<span>&#x24D8;</span></h3>
-        <h3 data-tooltip="Calculated cost for your item">COST<span>&#x24D8;</span></h3>
+        <label id="kwh-label" data-tooltip="Calculated kilowatt-hours per day">KWH<span
+                class="info-icon">&#x24D8;</span></label>
+        <label id="cost-label" data-tooltip="Calculated cost per day">COST<span
+                class="info-icon">&#x24D8;</span></label>
         <span></span>
     </div>
     <div class="items">
         @foreach (var item in itemList.Items)
         {
-            <ItemComponent Item="item" OnRemoveClicked="RemoveItem" />
+            <ItemComponent Item="item" Price="itemList.Price" OnRemoveClicked="RemoveItem" />
         }
         <button @onclick="AddItem" class="outline add-item-button" data-tooltip="Add a new item like: Microwave, Fridge"
             data-placement="bottom">ADD ITEM
@@ -33,15 +56,18 @@
     private void AddItem()
     {
         itemList.Items.Add(new ItemData());
+        // TODO: Save to local storage
     }
 
     private void RemoveItem(Guid ID)
     {
         itemList.RemoveItem(ID);
+        // TODO: Save to local storage
     }
 
     protected override void OnInitialized()
     {
+        // TODO: Load from local storage
         itemList.Items.Add(new ItemData());
     }
 }

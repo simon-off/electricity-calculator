@@ -6,7 +6,7 @@
   margin: 0;
 }
 
-option {
-  text-overflow: ellipsis;
-  white-space: nowrap;
+input:disabled {
+  background-color: var(--muted-border-color);
+  opacity: 1;
 }
