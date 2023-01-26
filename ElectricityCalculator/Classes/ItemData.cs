@@ -8,8 +8,15 @@ public enum ItemTimeFormat
 
 public class ItemData
 {
+    public ItemData(ItemList list)
+    {
+        _list = list;
+    }
+
+    private ItemList _list;
     private double _wattage;
     private double _usageTime;
+    private ItemTimeFormat _usageTimeFormat = ItemTimeFormat.Hours;
 
     public Guid ID { get; } = Guid.NewGuid();
     public string Title { get; set; } = "";
@@ -26,6 +33,8 @@ public class ItemData
             {
                 _wattage = value;
             }
+
+            _list.UpdateList();
         }
     }
     public double UsageTime
@@ -49,17 +58,25 @@ public class ItemData
             {
                 _usageTime = value;
             }
+
+            _list.UpdateList();
         }
     }
-    public ItemTimeFormat UsageTimeFormat { get; set; } = ItemTimeFormat.Hours;
+    public ItemTimeFormat UsageTimeFormat
+    {
+        get { return _usageTimeFormat; }
+        set
+        {
+            _usageTimeFormat = value;
+            _list.UpdateList();
+        }
+    }
     public double KilowattHours { get; private set; }
     public double Cost { get; private set; }
 
-    public void UpdateOutput(double price)
+    // Gets called from ItemList
+    public void UpdateItem()
     {
-        Wattage = Wattage;
-        UsageTime = UsageTime;
-
         if (UsageTimeFormat == ItemTimeFormat.Minutes)
         {
             KilowattHours = (_wattage / 1000) * (_usageTime / 60);
@@ -69,6 +86,6 @@ public class ItemData
             KilowattHours = (_wattage / 1000) * _usageTime;
         }
 
-        Cost = KilowattHours * price;
+        Cost = KilowattHours * _list.Price;
     }
 }

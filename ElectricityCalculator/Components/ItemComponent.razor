@@ -1,16 +1,16 @@
 <div class="item-inputs items-layout">
     <input aria-labelledby="name-label" type="text" placeholder="Name..." @bind="Item.Title">
     <input aria-labelledby="watt-label" type="number" placeholder="Watt..." @bind="Item.Wattage"
-        @bind:after="CallUpdate">
+        >
     <input aria-labelledby="usage-label" type="number" placeholder="Time..." @bind="Item.UsageTime"
-        @bind:after="CallUpdate">
-    <select aria-label="hours or minutes" @bind="Item.UsageTimeFormat" @bind:after="CallUpdate">
+       >
+    <select aria-label="hours or minutes" @bind="Item.UsageTimeFormat" >
         <option value="@ItemTimeFormat.Hours" selected="selected">Hours</option>
         <option value="@ItemTimeFormat.Minutes">Minutes</option>
     </select>
-    <input aria-labelledby="kwh-label" type="text" disabled value="@Item.KilowattHours">
-    <input aria-labelledby="cost-label" type="text" disabled value="@(Item.Cost / 100) kr">
-    <button @onclick=" RemoveClicked" class="outline secondary">❌</button>
+    <input aria-labelledby="kwh-label" type="text" disabled value="@Item.KilowattHours.ToString("N", CultureInfo.CurrentCulture)">
+    <input aria-labelledby="cost-label" type="text" disabled value="@Item.Cost.ToString("C", CultureInfo.CurrentCulture)">
+    <button @onclick="RemoveClicked" class="outline secondary">❌</button>
 </div>
 
 @code
@@ -27,11 +27,5 @@
     protected async Task RemoveClicked()
     {
         await OnRemoveClicked.InvokeAsync(Item.ID);
-    }
-
-    void CallUpdate()
-    {
-        Item.UpdateOutput(Price);
-        // TODO: Save to local storage
     }
 }

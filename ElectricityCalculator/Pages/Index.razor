@@ -4,20 +4,20 @@
 
 <section class="result-section mono">
     <div>
-        <label for="price">Price/kWh</label>
-        <input id="price" type="number">
+        <label for="price">@CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol/kWh</label>
+        <input id="price" type="number" @bind="itemList.Price">
     </div>
     <div>
         <label for="total-kwh">Total kWH</label>
-        <input id="total-kwh" type="number" disabled>
+        <input id="total-kwh" disabled value="@itemList.TotalKilowattHours.ToString("N", CultureInfo.CurrentCulture)">
     </div>
     <div>
         <label for="total-cost">Total Cost</label>
-        <input id="total-cost" type="number" disabled>
+        <input id="total-cost" disabled value="@itemList.TotalCost.ToString("C", CultureInfo.CurrentCulture)">
     </div>
     <div>
         <label for="time-format">Per</label>
-        <select id="time-format">
+        <select id="time-format" @bind="itemList.TimeFormat">
             <option value="@TotalTimeFormat.Day" selected="selected">Day</option>
             <option value="@TotalTimeFormat.Month">Month</option>
             <option value="@TotalTimeFormat.Year">Year</option>
@@ -53,9 +53,21 @@
 {
     private ItemList itemList = new();
 
+    protected override void OnInitialized()
+    {
+        // TODO: Load from local storage
+        itemList.Items.Add(new ItemData(itemList));
+        itemList.Refresh += c_Refresh;
+    }
+
+    public void c_Refresh(object? sender, EventArgs e)
+    {
+        StateHasChanged();
+    }
+
     private void AddItem()
     {
-        itemList.Items.Add(new ItemData());
+        itemList.Items.Add(new ItemData(itemList));
         // TODO: Save to local storage
     }
 
@@ -63,11 +75,5 @@
     {
         itemList.RemoveItem(ID);
         // TODO: Save to local storage
-    }
-
-    protected override void OnInitialized()
-    {
-        // TODO: Load from local storage
-        itemList.Items.Add(new ItemData());
     }
 }
