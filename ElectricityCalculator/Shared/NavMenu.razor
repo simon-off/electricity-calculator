@@ -16,25 +16,25 @@
         </li>
         <li>
             <label for="switch">
-                <input type="checkbox" id="switch" role="switch" @bind="DarkTheme">
-                @(_darkTheme ? "☀" : "🌛")
+                <input type="checkbox" id="switch" role="switch" @bind="LightTheme">
+                <i class="fa fa-lightbulb-o"></i>
             </label>
         </li>
     </ul>
 </nav>
 
 @code {
-    bool _darkTheme = true;
-    bool DarkTheme
+    bool _lightTheme = false;
+    bool LightTheme
     {
         get
         {
-            return _darkTheme;
+            return _lightTheme;
         }
         set
         {
-            JsRuntime.InvokeVoidAsync("toggleTheme", _darkTheme);
-            _darkTheme = !_darkTheme;
+            JsRuntime.InvokeVoidAsync("toggleTheme", _lightTheme);
+            _lightTheme = !_lightTheme;
         }
     }
 }

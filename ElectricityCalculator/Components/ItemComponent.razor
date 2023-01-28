@@ -1,16 +1,22 @@
 <div class="item-inputs items-layout">
+    
+    <label>ITEM</label>
     <input aria-labelledby="name-label" type="text" placeholder="Name..." @bind="Item.Title">
+    <label>WATT</label>
     <input aria-labelledby="watt-label" type="number" placeholder="Watt..." @bind="Item.Wattage">
-    <input aria-labelledby="usage-label" type="number" placeholder="Time..." @bind="Item.UsageTime">
+    <label>TIME</label>
+    <input class="short-input" aria-labelledby="time-label" type="number" placeholder="Time..." @bind="Item.UsageTime">
     <select aria-label="hours or minutes" @bind="Item.UsageTimeFormat">
         <option value="@ItemTimeFormat.Hours" selected="selected">Hours</option>
         <option value="@ItemTimeFormat.Minutes">Minutes</option>
     </select>
+    <label>KWH</label>
     <input aria-labelledby="kwh-label" type="text" disabled
         value="@Item.KilowattHours.ToString("N", CultureInfo.CurrentCulture)">
+    <label>COST</label>
     <input aria-labelledby="cost-label" type="text" disabled
         value="@Item.Cost.ToString("C", CultureInfo.CurrentCulture)">
-    <button @onclick="RemoveClicked" class="outline secondary">❌</button>
+    <button @onclick="RemoveClicked" class="outline secondary"><i class="fa fa-trash"></i></button>
 </div>
 
 @code

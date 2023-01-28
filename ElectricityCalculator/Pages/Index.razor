@@ -1,4 +1,5 @@
-﻿@page "/"
+﻿@inject IJSRuntime JsRuntime
+@page "/"
 
 <PageTitle>Electricity Calculator</PageTitle>
 
@@ -16,7 +17,7 @@
         <input id="total-cost" disabled value="@itemList.TotalCost.ToString("C", CultureInfo.CurrentCulture)">
     </div>
     <div>
-        <label for="time-format">Per</label>
+        <label for="time-format"><span> </span></label>
         <select id="time-format" @bind="itemList.TimeFormat">
             <option value="@TotalTimeFormat.Day" selected="selected">Day</option>
             <option value="@TotalTimeFormat.Month">Month</option>
@@ -29,7 +30,7 @@
     <div class="items-labels items-layout">
         <label id="name-label" data-tooltip="Enter item name">ITEM<span class="info-icon">&#x24D8;</span></label>
         <label id="watt-label" data-tooltip="Enter item wattage">WATT<span class="info-icon">&#x24D8;</span></label>
-        <label id="usage-label" data-tooltip="Enter item usage time per day">USAGE<span
+        <label id="time-label" data-tooltip="Enter item usage time per day">TIME<span
                 class="info-icon">&#x24D8;</span></label>
         <span></span>
         <label id="kwh-label" data-tooltip="Calculated kilowatt-hours per day">KWH<span
@@ -68,12 +69,18 @@
     private void AddItem()
     {
         itemList.Items.Add(new ItemData(itemList));
-        // TODO: Save to local storage
+        SaveLocalStorage(itemList);
     }
 
     private void RemoveItem(Guid ID)
     {
         itemList.RemoveItem(ID);
-        // TODO: Save to local storage
+        SaveLocalStorage(itemList);
+    }
+
+    private void SaveLocalStorage(object input)
+    {
+        var json = JsonSerializer.Serialize(input);
+        JsRuntime.InvokeVoidAsync("saveLocalStorage", json);
     }
 }
