@@ -9,9 +9,9 @@ public enum TotalTimeFormat
 
 public class ItemList
 {
-    public event EventHandler Refresh;
+    public event EventHandler? Refresh;
 
-    private double _price = 250;
+    private double _price = 0;
     private TotalTimeFormat _timeFormat = TotalTimeFormat.Day;
 
     public List<ItemData> Items = new List<ItemData>();
