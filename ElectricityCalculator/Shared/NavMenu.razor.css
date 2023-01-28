@@ -1,7 +1,14 @@
 nav {
-  border-bottom: 1px solid;
+  border-bottom: 1px solid var(--primary);
+  background-color: var(--code-background-color);
 }
 
-h2 {
+h1 {
   margin: 0;
+}
+
+a,
+a > h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
 }
