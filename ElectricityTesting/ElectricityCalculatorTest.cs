@@ -16,36 +16,36 @@ public class ItemDataTest
         double expected
     )
     {
-        ItemList list = new();
-        ItemData item = new(list);
+        ItemList list = new() { Price = 10 };
+        ItemData item =
+            new(list)
+            {
+                UsageTimeFormat = timeFormat,
+                UsageTime = usageTime,
+                Wattage = wattage
+            };
 
-        list.Price = 10;
-
-        item.UsageTimeFormat = timeFormat;
-        item.UsageTime = usageTime;
-        item.Wattage = wattage;
         item.UpdateItem();
 
         Assert.Equal(expected, item.Cost);
     }
 }
 
-// public class ItemListTest
-// {
-//     [Fact]
-//     public void PassingTest()
-//     {
-//         Assert.Equal(4, Add(2, 2));
-//     }
+public class ItemListTest
+{
+    [Theory]
+    [InlineData(1, TotalTimeFormat.Day, 10)]
+    [InlineData(-1, TotalTimeFormat.Day, 0)]
+    [InlineData(500, TotalTimeFormat.Day, 5000)]
+    public void UpdateListTest(double price, TotalTimeFormat timeFormat, double expected)
+    {
+        ItemList list = new() { Price = price, TimeFormat = timeFormat };
+        list.Items.Add(new ItemData(list) { Wattage = 100, UsageTime = 24 });
+        list.Items.Add(new ItemData(list) { Wattage = 200, UsageTime = 8 });
+        list.Items.Add(new ItemData(list) { Wattage = 1000, UsageTime = 6 });
 
-//     [Fact]
-//     public void FailingTest()
-//     {
-//         Assert.Equal(5, Add(2, 2));
-//     }
+        list.UpdateList();
 
-//     int Add(int x, int y)
-//     {
-//         return x + y;
-//     }
-// }
+        Assert.Equal(expected, list.TotalCost);
+    }
+}

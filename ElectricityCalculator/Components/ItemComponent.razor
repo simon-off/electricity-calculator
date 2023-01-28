@@ -16,7 +16,7 @@
 @code
 {
     [Parameter]
-    public ItemData Item { get; set; }
+    public ItemData Item { get; set; } = null!;
 
     [Parameter]
     public double Price { get; set; }
@@ -26,6 +26,9 @@
 
     protected async Task RemoveClicked()
     {
-        await OnRemoveClicked.InvokeAsync(Item.ID);
+        if (Item != null)
+        {
+            await OnRemoveClicked.InvokeAsync(Item.ID);
+        }
     }
 }

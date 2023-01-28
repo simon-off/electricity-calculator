@@ -2,8 +2,8 @@ namespace ElectricityCalculator.Classes;
 
 public enum ItemTimeFormat
 {
-    Minutes,
-    Hours
+    Minutes = 60,
+    Hours = 1
 }
 
 public class ItemData
@@ -25,40 +25,16 @@ public class ItemData
         get { return _wattage; }
         set
         {
-            if (value < 0)
-            {
-                _wattage = 0;
-            }
-            else
-            {
-                _wattage = value;
-            }
-
+            _wattage = Math.Clamp(value, 0, double.MaxValue);
             _list.UpdateList();
         }
     }
     public double UsageTime
     {
-        get { return _usageTime; }
+        get { return _usageTime * (double)UsageTimeFormat; }
         set
         {
-            if (value < 0)
-            {
-                _usageTime = 0;
-            }
-            else if (UsageTimeFormat == ItemTimeFormat.Hours && value > 24)
-            {
-                _usageTime = 24;
-            }
-            else if (UsageTimeFormat == ItemTimeFormat.Minutes && value > 1440)
-            {
-                _usageTime = 1440;
-            }
-            else
-            {
-                _usageTime = value;
-            }
-
+            _usageTime = Math.Clamp(value / (double)UsageTimeFormat, 0, 24);
             _list.UpdateList();
         }
     }
@@ -77,15 +53,7 @@ public class ItemData
     // Gets called from ItemList
     public void UpdateItem()
     {
-        if (UsageTimeFormat == ItemTimeFormat.Minutes)
-        {
-            KilowattHours = (_wattage / 1000) * (_usageTime / 60);
-        }
-        else
-        {
-            KilowattHours = (_wattage / 1000) * _usageTime;
-        }
-
+        KilowattHours = (_wattage / 1000) * (_usageTime);
         Cost = KilowattHours * _list.Price;
     }
 }

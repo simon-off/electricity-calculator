@@ -20,7 +20,7 @@ public class ItemList
         get { return _price; }
         set
         {
-            _price = value;
+            _price = Math.Clamp(value, 0, double.MaxValue);
             UpdateList();
         }
     }
@@ -43,7 +43,9 @@ public class ItemList
             item.UpdateItem();
         }
 
-        TotalKilowattHours = Items.Aggregate(0d, (acc, item) => acc + item.KilowattHours);
+        TotalKilowattHours = (
+            Items.Aggregate(0d, (acc, item) => acc + item.KilowattHours) * (double)TimeFormat
+        );
         TotalCost = Items.Aggregate(0d, (acc, item) => acc + item.Cost) * (double)TimeFormat;
 
         Refresh?.Invoke(this, EventArgs.Empty);
@@ -52,6 +54,9 @@ public class ItemList
     public void RemoveItem(Guid ID)
     {
         var itemToDelete = Items.Find((item) => item.ID == ID);
-        Items.Remove(itemToDelete);
+        if (itemToDelete != null)
+        {
+            Items.Remove(itemToDelete);
+        }
     }
 }
