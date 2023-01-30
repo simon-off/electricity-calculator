@@ -1,0 +1,11 @@
+p {
+  text-align: center;
+  margin: 0;
+}
+
+footer {
+  border-top: 2px solid var(--primary-focus);
+  padding: var(--spacing);
+  background-color: var(--code-background-color);
+  box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,31 @@
+@page "/about"
+
+<hgroup>
+<h2>Electricity Calculator</h2>
+<h3>An online calculator that helps you easily estimate your electricity consumption and costs</h3>
+</hgroup>
+
+<p>
+With this app we tried to create an electricity calculator that is simple and easy to use. We want to make sure you have the information you need to make informed decisions about your energy consumption. Each items cost is calculated by multiplying the usage time, wattage and @CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol/kWh.
+<br><br>
+<i>- Thank you for visiting Electricity Calculator!</i>
+</p>
+
+<article>
+<h2>How to use this app</h2>
+    <ol>
+        <li>Enter your electricity cost in @CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol per kWh, in the <code>@CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol/kWh</code> field.</li>
+    
+        <li>Enter the wattage of each item, in the <code>WATTAGE</code> field.</li>
+    
+        <li>Enter the usage time of each item, in the <code>USAGE</code> field.</li>
+    
+        <li>You can choose to enter usage time in either minutes or hours: <code>M/H</code></li>
+    
+        <li>The calculated result for each item is shown in the <code>KWH</code> and <code>COST</code> fields.</li>
+    
+        <li>The calculated results for all items is shown in the <code>Total kWH</code> and <code>Total Cost</code> fields.</li>
+
+        <li>You can view the total cost and kWh per day, month or year: <code>D/M/Y</code></li>
+    </ol>
+</article>
