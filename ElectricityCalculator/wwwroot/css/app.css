@@ -5,9 +5,17 @@ html {
 }
 
 body {
+  height: 100%;
+}
+
+#app {
   min-height: 100%;
   display: grid;
   grid-template-rows: auto 1fr auto;
+}
+
+main {
+  padding-top: calc(var(--spacing) * 3);
 }
 
 .container {
