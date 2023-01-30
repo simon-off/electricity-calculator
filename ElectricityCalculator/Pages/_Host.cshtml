@@ -39,13 +39,6 @@
             const htmlElement = document.getElementsByTagName("html");
             htmlElement[0].dataset.theme = darkTheme ? "dark" : "light";
         }
-        function saveLocalStorage(jsonString) {
-            window.localStorage.setItem(items, jsonString);
-        }
-        function loadLocalStorage()
-        {
-            return localStorage.getItem(items);
-        }
     </script>
 </body>
 

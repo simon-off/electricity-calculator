@@ -1,5 +1,5 @@
 <div class="item-inputs items-layout">
-    
+
     <label>ITEM</label>
     <input aria-labelledby="name-label" type="text" placeholder="Name..." @bind="Item.Title">
     <label>WATT</label>
@@ -30,6 +30,7 @@
     [Parameter]
     public EventCallback<Guid> OnRemoveClicked { get; set; }
 
+    // Calls the RemoveItem function in index.razor
     protected async Task RemoveClicked()
     {
         if (Item != null)

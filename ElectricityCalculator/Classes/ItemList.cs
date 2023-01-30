@@ -14,7 +14,7 @@ public class ItemList
     private double _price = 0;
     private TotalTimeFormat _timeFormat = TotalTimeFormat.Day;
 
-    public List<ItemData> Items = new List<ItemData>();
+    public List<ItemData> Items { get; set; } = new List<ItemData>();
     public double Price
     {
         get { return _price; }
@@ -36,6 +36,9 @@ public class ItemList
         }
     }
 
+    // Updates the cost and kwh of each item
+    // Calculates the total cost and total kwh
+    // Invokes the Refresh event to update UI
     public void UpdateList()
     {
         foreach (ItemData item in Items)

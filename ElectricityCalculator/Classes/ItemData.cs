@@ -50,7 +50,7 @@ public class ItemData
     public double KilowattHours { get; private set; }
     public double Cost { get; private set; }
 
-    // Gets called from ItemList
+    // Gets called from ItemList. Calculates the cost and kwh
     public void UpdateItem()
     {
         KilowattHours = (_wattage / 1000) * (_usageTime);

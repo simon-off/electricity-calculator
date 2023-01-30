@@ -56,12 +56,12 @@
 
     protected override void OnInitialized()
     {
-        // TODO: Load from local storage
         itemList.Items.Add(new ItemData(itemList));
-        itemList.Refresh += c_Refresh;
+        // subscribe to the Refresh event
+        itemList.Refresh += onRefresh;
     }
 
-    public void c_Refresh(object? sender, EventArgs e)
+    public void onRefresh(object? sender, EventArgs e)
     {
         StateHasChanged();
     }
@@ -69,18 +69,10 @@
     private void AddItem()
     {
         itemList.Items.Add(new ItemData(itemList));
-        SaveLocalStorage(itemList);
     }
 
     private void RemoveItem(Guid ID)
     {
         itemList.RemoveItem(ID);
-        SaveLocalStorage(itemList);
-    }
-
-    private void SaveLocalStorage(object input)
-    {
-        var json = JsonSerializer.Serialize(input);
-        JsRuntime.InvokeVoidAsync("saveLocalStorage", json);
     }
 }
