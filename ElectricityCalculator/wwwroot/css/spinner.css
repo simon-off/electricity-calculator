@@ -1,0 +1,48 @@
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+}
+
+.spinner {
+  --color: var(--primary);
+  --size: min(calc(calc(1rem * 2) + 6vw), 6rem);
+  --inset: 25%;
+
+  aspect-ratio: 1/1;
+  width: var(--size);
+  border-radius: 50%;
+  background-image: conic-gradient(rgba(0 0 0 / 0), var(--color));
+  animation: spin 1s linear infinite;
+}
+.spinner::before {
+  position: absolute;
+  inset: var(--inset);
+  content: "";
+  border-radius: inherit;
+  background-color: var(--background-color);
+}
+.spinner::after {
+  position: absolute;
+  top: 0px;
+  left: calc((var(--size) / 2) - (var(--inset) / 2));
+  width: var(--inset);
+  content: "";
+  display: block;
+  aspect-ratio: inherit;
+  border-radius: inherit;
+
+  background-color: var(--color);
+}
+
+@keyframes spin {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
