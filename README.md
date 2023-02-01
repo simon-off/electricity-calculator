@@ -1,5 +1,6 @@
 # __⚡ Electricity Calculator ⚡__
 
+[![.NET](https://github.com/simon-off/electricity-calculator/actions/workflows/dotnet.yml/badge.svg?branch=master)](https://github.com/simon-off/electricity-calculator/actions/workflows/dotnet.yml)
 
 Simple Calculator app made with [Blazor](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor) & [Pico.css](https://picocss.com/). Part of course submission for _C# introduction_ at _ECUtbildning_ 2023.
 
