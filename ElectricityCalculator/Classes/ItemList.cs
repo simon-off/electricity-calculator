@@ -61,5 +61,6 @@ public class ItemList
         {
             Items.Remove(itemToDelete);
         }
+        UpdateList();
     }
 }
