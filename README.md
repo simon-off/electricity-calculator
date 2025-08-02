@@ -4,7 +4,7 @@
 
 Calculator app made with [Blazor](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor) & [Pico.css](https://picocss.com/). Part of course submission for _C# introduction_ at _ECUtbildning_ 2023.
 
-Preview on Netlify: [Electricity Calculator](https://electricitycalculator.netlify.app/)
+Check it out: [Electricity Calculator](https://electricity.simonoff.se/)
 
 ---
 
